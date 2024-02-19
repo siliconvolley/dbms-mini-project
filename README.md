@@ -23,3 +23,10 @@ Description: A Python and MySQL project for tracking electrical equipment, opera
 -> create your database
 
 ->  configure your Python backend to connect to the MySQL database
+
+<div style="text-align: center; text-decoration: underline; margin-top: 5rem">
+    <h3 style="margin: 0;">ER Diagram</h3>
+    <img src="/project-docs/ER.png" alt="ER Diagram" style="scale: 0.8; margin-bottom: 0;">
+    <h3 style="margin: 0;">Relational Schema</h3>
+    <img src="/project-docs/SCHEMA (2).png" alt="ER Diagram" style="scale: 0.8;">
+</div>
