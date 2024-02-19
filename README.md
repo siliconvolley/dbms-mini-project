@@ -1,5 +1,7 @@
 # DBMS Mini Project (Energy Monitoring System)
 
+Description: A Python and MySQL project for tracking electrical equipment, operators, and energy consumption. Enables companies to manage equipment ownership, monitor energy usage, and generate alerts. Includes relational database schema, backend implemented in Python using Flask, and MySQL. Promotes efficient resource optimization and sustainability practices within organizations
+
 (Work in progress 🔨🔃)
 
 ## What's the plan?
