@@ -1,4 +1,8 @@
-# What's the plan?
+# DBMS Mini Project (Energy Monitoring System)
+
+(Work in progress 🔨🔃)
+
+## What's the plan?
 
 - **Backend Framework** - Python (Flask) + MySQL
 
