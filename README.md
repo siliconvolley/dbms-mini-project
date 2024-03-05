@@ -28,5 +28,5 @@ Description: A Python and MySQL project for tracking electrical equipment, opera
     <h3 style="margin: 0;">ER Diagram</h3>
     <img src="/project-docs/ER.png" alt="ER Diagram" style="scale: 0.8; margin-bottom: 0;">
     <h3 style="margin: 0;">Relational Schema</h3>
-    <img src="/project-docs/SCHEMA (2).png" alt="ER Diagram" style="scale: 0.8;">
+    <img src="/project-docs/SCHEMA-2.png" alt="ER Diagram" style="scale: 0.8;">
 </div>
