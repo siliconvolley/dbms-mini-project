@@ -2,12 +2,15 @@
 
 Description: A Python and MySQL project for tracking electrical equipment, operators, and energy consumption. Enables companies to manage equipment ownership, monitor energy usage, and generate alerts. Includes relational database schema, backend implemented in Python using Flask, and MySQL. Promotes efficient resource optimization and sustainability practices within organizations
 
-
-<div style="text-align: center; text-decoration: underline; margin-top: 5rem">
-    <h3 style="margin: 0;">ER Diagram</h3>
-    <img src="/project-docs/ER.png" alt="ER Diagram" style="scale: 0.8; margin-bottom: 0;">
-    <h3 style="margin: 0;">Relational Schema</h3>
-    <img src="/project-docs/SCHEMA-2.png" alt="ER Diagram" style="scale: 0.8;">
+<div style="text-align: center; text-decoration: underline; margin-top: 5rem; display: flex; justify-content: center;">
+    <div style="display: flex; flex-direction: column; align-items: center; margin-right: 1rem;">
+        <img src="/project-docs/ER.png" alt="ER Diagram" style="width: 80%; height: 200px; object-fit: contain; margin-bottom: 0;">
+        <h3 style="margin: 0;">ER Diagram</h3>
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+        <img src="/project-docs/SCHEMA-2.png" alt="Relational Schema" style="width: 80%; height: 200px; object-fit: contain;">
+        <h3 style="margin: 0;">Relational Schema</h3>
+    </div>
 </div>
 
 (Work in progress 🔨🔃)
