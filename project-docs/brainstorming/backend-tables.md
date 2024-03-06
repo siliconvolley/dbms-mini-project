@@ -1,4 +1,4 @@
-# Tables for the Database
+# Database Requirements
 
 <div style="text-align: center; text-decoration: underline; margin-top: 5rem">
     <h3 style="margin: 0;">ER Diagram</h3>
@@ -6,6 +6,8 @@
     <h3 style="margin: 0;">Relational Schema</h3>
     <img src="../SCHEMA-2.png" alt="ER Diagram" style="scale: 0.8;">
 </div>
+
+## Table Creation 
 
 ```
 CREATE TABLE COMPANY (
