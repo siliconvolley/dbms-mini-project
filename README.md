@@ -10,7 +10,7 @@ Description: A Python and MySQL project for tracking electrical equipment, opera
         <h3 style="margin: 0;">ER Diagram</h3>
     </div>
     <div style="display: flex; flex-direction: column; align-items: center;">
-        <img src="/project-docs/SCHEMA-2.png" alt="Relational Schema" style="width: 80%; height: 400px; object-fit: contain;">
+        <img src="/project-docs/SCHEMA-final.png.png" alt="Relational Schema" style="width: 80%; height: 400px; object-fit: contain;">
         <h3 style="margin: 0;">Relational Schema</h3>
     </div>
 </div>
