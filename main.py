@@ -19,9 +19,14 @@ mysql = MySQL(app)
 @app.route('/')
 def form():
     return render_template('index.html')
- 
+
+@app.route('/add_new')
+def add_new():
+    return render_template('add_new.html')
+
+# Company Entry Page
 @app.route('/company', methods = ['POST', 'GET'])
-def company_login():
+def company_entry():
     if request.method == 'GET':
         cursor = mysql.connection.cursor()
         cursor.execute("SELECT CompanyID FROM COMPANY ORDER BY CompanyID DESC LIMIT 1")
@@ -45,9 +50,12 @@ def company_login():
 
         cursor.execute("INSERT INTO COMPANY VALUES(%s,%s,%s,%s)",(new_company_id,CompanyName, Location, Contact))
         mysql.connection.commit()
+        cursor.execute("SELECT * FROM COMPANY")
+        data = cursor.fetchall()
         cursor.close()
-        return f"Done!!"
+        return render_template('display_company_data.html', data=data)
 
+# Company Data Page
 @app.route('/company_data')
 def display_company_data():
     try:
@@ -60,17 +68,24 @@ def display_company_data():
         print("Error fetching data:", str(e))
         return "Error fetching data. Please check the console for details."
     
+# Equipments Entry Page
 @app.route('/equipments', methods = ['POST', 'GET'])
-def equipments_login():
+def equipments_entry():
     if request.method == 'GET':
         cursor = mysql.connection.cursor()
+
         cursor.execute("SELECT EquipmentID FROM EQUIPMENTS ORDER BY EquipmentID DESC LIMIT 1")
         result = cursor.fetchone()
         latest_equipment_id = result['EquipmentID'] if result else None
         new_equipment_id = increment_id(latest_equipment_id)
+
+        cursor.execute("SELECT CompanyID FROM COMPANY")
+        result = cursor.fetchall()
+        companies = [row['CompanyID'] for row in result]
+
         cursor.close()
         
-        return render_template('equipments.html', latest_equipment_id=new_equipment_id)
+        return render_template('equipments.html', latest_equipment_id=new_equipment_id, companies=companies)
      
     if request.method == 'POST':
         EquipmentName = request.form['EquipmentName']
@@ -89,6 +104,7 @@ def equipments_login():
         cursor.close()
         return f"Done!!"
     
+# Equipments Data Page
 @app.route('/equipments_data')
 def display_equipments_data():
     try:
@@ -101,20 +117,26 @@ def display_equipments_data():
         print("Error fetching data:", str(e))
         return "Error fetching data. Please check the console for details."
     
+# Operators Entry Page
 @app.route('/operators', methods = ['POST', 'GET'])
-def operators_login():
+def operators_entry():
     if request.method == 'GET':
         cursor = mysql.connection.cursor()
+
         cursor.execute("SELECT OperatorID FROM OPERATORS ORDER BY OperatorID DESC LIMIT 1")
         result = cursor.fetchone()
         latest_operator_id = result['OperatorID'] if result else None
         new_opeator_id = increment_id(latest_operator_id)
+        
+        cursor.execute("SELECT CompanyID FROM COMPANY")
+        result = cursor.fetchall()
+        companies = [row['CompanyID'] for row in result]
+        
         cursor.close()
 
-        return render_template('operators.html', latest_operator_id=new_opeator_id)
+        return render_template('operators.html', latest_operator_id=new_opeator_id, companies=companies)
      
     if request.method == 'POST':
-        OperatorID = request.form['OperatorID']
         OperatorName = request.form['OperatorName']
         Occuption = request.form['Occuption']
         PhoneNumber = request.form['PhoneNumber']
@@ -131,6 +153,7 @@ def operators_login():
         cursor.close()
         return f"Done!!"
     
+# Operators Data Page
 @app.route('/operators_data')
 def display_operators_data():
     try:
