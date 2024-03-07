@@ -17,8 +17,32 @@ mysql = MySQL(app)
 # ============================================= User Interface ========================================================
 
 @app.route('/')
-def home():
+def form():
     return render_template('index.html')
+ 
+@app.route('/login', methods = ['POST', 'GET'])
+def login():
+    if request.method == 'GET':
+        return "Login via the login Form"
+     
+    if request.method == 'POST':
+        CompanyID = request.form['CompanyID']
+        CompanyName = request.form['CompanyName']
+        Location = request.form['Location']
+        Contact = request.form['Contact']
 
-if __name__ == '__main__':
-   app.run(debug=True)
+        cursor = mysql.connection.cursor()
+        cursor.execute(''' INSERT INTO COMPANY VALUES(%s,%s,%s,%s)''',(CompanyID,CompanyName, Location, Contact))
+        mysql.connection.commit()
+        cursor.close()
+        return f"Done!!"
+
+@app.route('/display_data')   
+def display_data():
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * FROM COMPANY")
+    data = cursor.fetchall()
+    cursor.close()
+    return render_template('display_data.html', data=data)
+ 
+app.run(host='localhost', port=5000)
