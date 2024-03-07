@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Display Page</title>
+    <title>Energy Monitoring System</title>
 </head>
 <body>
-    <h1>Data Display Page</h1>
-    <table border="1">
+    <h1>Company Data Page</h1>
+    <table>
         <tr>
             <th>CompanyID</th>
             <th>CompanyName</th>
@@ -17,10 +17,10 @@
         </tr>
         {% for row in data %}
         <tr>
-            <td>{{ row[0] }}</td>
-            <td>{{ row[1] }}</td>
-            <td>{{ row[2] }}</td>
-            <td>{{ row[3] }}</td>
+            <td>{{ row.CompanyID }}</td>
+            <td>{{ row.CompanyName }}</td>
+            <td>{{ row.Location }}</td>
+            <td>{{ row.Contact }}</td>
         </tr>
         {% endfor %}
     </table>

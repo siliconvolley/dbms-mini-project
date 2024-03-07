@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Monitoring System</title>
+</head>
+<body>
+    <h1>OperatorID: {{latest_operator_id}}</h1>
+    <form action="/operators" method = "POST">
+        <p>OperatorName <input type = "text" name = "OperatorName" /></p>
+        <p>Occuption <input type = "text" name = "Occuption" /></p>
+        <p>PhoneNumber <input type = "number" name = "PhoneNumber" /></p>
+        <p>CompanyID <input type = "text" name = "CompanyID" /></p> <!--Make this a toggle-->
+
+        <p><input type = "submit" value = "Submit" /></p>
+     </form>
+</body>
+</html>
