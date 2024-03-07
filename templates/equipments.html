@@ -8,18 +8,18 @@
 <body>
     <h1>EquipmentID : {{ latest_equipment_id }}</h1>
     <form action="/equipments" method="POST">
-        <!-- <p>EquipmentID <input type="text" name="EquipmentID" /></p> -->
         <p>EquipmentName <input type="text" name="EquipmentName" /></p>
         <p>PowerRating <input type="number" name="PowerRating" /></p>
         <p>ManufacturingDate <input type="date" name="ManufacturingDate" /></p>
-        <p>CompanyID <input type="text" name="CompanyID" /></p>
-        <!-- <p>CompanyID
+        <!-- <p>CompanyID <input type="text" name="CompanyID" /></p> -->
+        <p>CompanyID
             <select name="CompanyID">
-                {% for company in companies %}
-                <option value="{{ company.id }}">{{ company.name }}</option>
+                <option value="" selected disabled hidden place>Select a CompanyID</option>
+                {% for company_id in companies %}
+                <option value="{{ company_id }}">{{ company_id }}</option>
                 {% endfor %}
             </select>
-        </p> --> <!--DUMB DROPDOWN DOESNT WORK-->
+        </p> <!--DUMB DROPDOWN WORKS NOW-->
 
         <p><input type="submit" value="Submit" /></p>
     </form>
