@@ -35,16 +35,6 @@ CREATE TABLE OPERATORS (
     FOREIGN KEY (CompanyID) REFERENCES COMPANY(CompanyID)
 );
 
-CREATE TABLE ALERTS (
-    EquipmentID varchar(20),
-    OperatorID varchar(20),
-    EnergyConsumed integer,
-    TimeStamp timestamp,
-    PRIMARY KEY (EquipmentID, OperatorID),
-    FOREIGN KEY (EquipmentID) REFERENCES EQUIPMENTS(EquipmentID),
-    FOREIGN KEY (OperatorID) REFERENCES OPERATORS(OperatorID)
-);
-
 CREATE TABLE OPERATES (
     OperatorID varchar(20),
     CompanyID varchar(20),
@@ -53,14 +43,24 @@ CREATE TABLE OPERATES (
     FOREIGN KEY (CompanyID) REFERENCES COMPANY(CompanyID)
 );
 
+CREATE TABLE ALERTS (
+    AlertID varchar(20),
+    EquipmentID varchar(20),
+    OperatorID varchar(20),
+    EnergyConsumed integer,
+    TimeStamp timestamp,
+    FOREIGN KEY (EquipmentID) REFERENCES EQUIPMENTS(EquipmentID),
+    FOREIGN KEY (OperatorID) REFERENCES OPERATORS(OperatorID)
+);
+
 ---DATA INSERTION---
 INSERT INTO COMPANY (CompanyID, CompanyName, Location, Contact)
 VALUES 
-    ('C001', 'ABC Electronics', 'New York', 1234567890),
-    ('C002', 'XYZ Tech', 'San Francisco', 9876543210),
-    ('C003', 'Tech Innovators', 'London', 4567890123),
-    ('C004', 'Global Systems', 'Tokyo', 7890123456),
-    ('C005', 'Smart Solutions', 'Sydney', 3210987654);
+    ('C001', 'ABC Electronics', 'New York', 12345678),
+    ('C002', 'XYZ Tech', 'San Francisco', 98765432),
+    ('C003', 'Tech Innovators', 'London', 45678901),
+    ('C004', 'Global Systems', 'Tokyo', 78901234),
+    ('C005', 'Smart Solutions', 'Sydney', 32109876);
 
 INSERT INTO EQUIPMENTS (EquipmentID, EquipmentName, PowerRating, ManufacturingDate, CompanyID)
 VALUES 
@@ -72,19 +72,19 @@ VALUES
 
 INSERT INTO OPERATORS (OperatorID, OperatorName, Occupation, PhoneNumber, CompanyID)
 VALUES 
-    ('O001', 'John Smith', 'Technician', 5551234567, 'C001'),
-    ('O002', 'Emily White', 'Engineer', 5559876543, 'C002'),
-    ('O003', 'David Brown', 'Operator', 5552345678, 'C003'),
-    ('O004', 'Sarah Miller', 'Maintenance', 5558765432, 'C004'),
-    ('O005', 'Alex Johnson', 'Inspector', 5553456789, 'C005');
+    ('O001', 'John Smith', 'Technician', 55512345, 'C001'),
+    ('O002', 'Emily White', 'Engineer', 55598765, 'C002'),
+    ('O003', 'David Brown', 'Operator', 55523456, 'C003'),
+    ('O004', 'Sarah Miller', 'Maintenance', 55587654, 'C004'),
+    ('O005', 'Alex Johnson', 'Inspector', 55534567, 'C005');
 
-INSERT INTO ALERTS (EquipmentID, OperatorID, EnergyConsumed, TimeStamp)
+INSERT INTO ALERTS (AlertID, EquipmentID, OperatorID, EnergyConsumed, TimeStamp)
 VALUES 
-    ('E001', 'O001', 1500, '2024-03-05 08:30:00'),
-    ('E002', 'O002', 800, '2024-03-05 10:15:00'),
-    ('E003', 'O003', 300, '2024-03-05 12:45:00'),
-    ('E004', 'O004', 1200, '2024-03-05 14:30:00'),
-    ('E005', 'O005', 500, '2024-03-05 16:00:00');
+    ('AL001', 'E001', 'O001', 1500, '2024-03-05 08:30:00'),
+    ('AL002', 'E002', 'O002', 800, '2024-03-05 10:15:00'),
+    ('AL003', 'E003', 'O003', 300, '2024-03-05 12:45:00'),
+    ('AL004', 'E004', 'O004', 1200, '2024-03-05 14:30:00'),
+    ('AL005', 'E005', 'O005', 500, '2024-03-05 16:00:00');
 
 INSERT INTO OPERATES (OperatorID, CompanyID)
 VALUES 
