@@ -1,9 +1,7 @@
-import MySQLdb.cursors
-from flask import Flask, redirect, render_template, session, request, flash, url_for, jsonify
+from flask import Flask, redirect, render_template, request
 from flask_mysqldb import MySQL
 from datetime import datetime
 from config import password
-import re
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "--------"
@@ -16,20 +14,80 @@ mysql = MySQL(app)
 
 # ============================================= User Interface ========================================================
 
+# Home Page rendering
 @app.route('/')
 def form():
     return render_template('index.html')
 
+# Add New page rendering
 @app.route('/add_new')
 def add_new():
     return render_template('add_new.html')
+
+# All Equipments Overview page rendering
+@app.route('/equipment_overview')
+def equipment_overview():
+    if request.method == 'GET':
+        cursor = mysql.connection.cursor()
+        cursor.execute('SELECT EquipmentID, EquipmentName FROM EQUIPMENTS')
+        equipments = cursor.fetchall()
+        cursor.close()
+
+        return render_template('equipment_overview.html', equipments=equipments)
+    
+# Selected Equipment Page rendering
+@app.route('/equipment_<equipment_id>')
+def equipment_detail(equipment_id):
+    cursor = mysql.connection.cursor()
+    cursor.execute('SELECT * FROM EQUIPMENTS WHERE EquipmentID = %s', (equipment_id,))
+    equipment = cursor.fetchone()
+
+    cursor.execute("SELECT OperatorID FROM OPERATORS")
+    result = cursor.fetchall()
+    operators = [row['OperatorID'] for row in result]
+    cursor.close()
+
+    return render_template('equipment_detail.html', equipment=equipment, operators = operators)
+
+# Selected Equipment adding Alert page rendering and logic
+@app.route('/equipment_<equipment_id>/add_log', methods = ['POST', 'GET'])
+def add_log(equipment_id):
+    if request.method == 'GET':
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT AlertID FROM ALERTS ORDER BY AlertID DESC LIMIT 1")
+        result = cursor.fetchone()
+        latest_alert_id = result['AlertID'] if result else None
+        new_alert_id = increment_id(latest_alert_id)
+        TimeStamp = datetime.now()
+        cursor.close()
+
+        return render_template('add_log.html', latest_alert_id = new_alert_id, equipment_id = equipment_id, time_stamp = TimeStamp)
+    
+    if request.method == 'POST':
+        OperatorID = request.form['OperatorID']
+        EnergyConsumed = request.form['EnergyConsumed']
+        TimeStamp = datetime.now()
+
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT AlertID FROM ALERTS ORDER BY AlertID DESC LIMIT 1")
+        result = cursor.fetchone()
+        latest_alert_id = result['AlertID'] if result else None
+        new_alert_id = increment_id(latest_alert_id)
+
+        cursor.execute("INSERT INTO ALERTS VALUES(%s,%s,%s,%s,%s)",(latest_alert_id, equipment_id, OperatorID, EnergyConsumed, TimeStamp))
+        mysql.connection.commit()
+        cursor.execute("SELECT * FROM ALERTS")
+        data = cursor.fetchall()
+        cursor.close()
+        return render_template('alerts.html', data=data)
+
 
 # Company Entry Page
 @app.route('/company', methods = ['POST', 'GET'])
 def company_entry():
     if request.method == 'GET':
         cursor = mysql.connection.cursor()
-        cursor.execute("SELECT CompanyID FROM COMPANY ORDER BY CompanyID DESC LIMIT 1")
+        cursor.execute('SELECT CompanyID FROM COMPANY ORDER BY CompanyID DESC LIMIT 1')
         result = cursor.fetchone()
         latest_company_id = result['CompanyID'] if result else None
         new_company_id = increment_id(latest_company_id)
@@ -168,8 +226,8 @@ def display_operators_data():
 
 # Function to increment the retrieved IDs
 def increment_id(id):
-    prefix = id[:1]
-    num = id[1:]
+    prefix = id[:-3]
+    num = id[-3:]
 
     num = int(num) + 1
     num = str(num).zfill(3)
