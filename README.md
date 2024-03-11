@@ -1,32 +1,104 @@
 # DBMS Mini Project (Energy Monitoring System)
 
-Description: A Python and MySQL project for tracking electrical equipment, operators, and energy consumption. Enables companies to manage equipment ownership, monitor energy usage, and generate alerts. Includes relational database schema, backend implemented in Python using Flask, and MySQL. Promotes efficient resource optimization and sustainability practices within organizations
-
 (Work in progress 🔨🔃)
 
-## What's the plan?
+Description: A Python and MySQL project for tracking electrical equipment, operators, and energy consumption. Enables companies to manage equipment ownership, monitor energy usage, and generate alerts. Includes relational database schema, backend implemented in Python using Flask, and MySQL. Promotes efficient resource optimization and sustainability practices within organizations
 
-- **Backend Framework** - Python (Flask) + MySQL
-
-- **Database Connectivity**: `mysql-connector` or `pymysql` library in Python to connect to your MySQL database.
-
-- **Database Schema Creation**: Tables are `Company`, `Equipments`, `Operators`, `Alerts` and `Operates`.
-
-- **SQLAlchemy (Optional)**: Maybe using SQLAlchemy, an ORM (Object-Relational Mapping) library for Python, to interact with your database in a more Pythonic way.
-
-- **RESTful API (Optional)**: RESTful API using Flask/Django to facilitate communication between the frontend and backend, for a web or mobile frontend.
-
-## To-do list:
-
--> install MySQL
-
--> create your database
-
-->  configure your Python backend to connect to the MySQL database
-
-<div style="text-align: center; text-decoration: underline; margin-top: 5rem">
-    <h3 style="margin: 0;">ER Diagram</h3>
-    <img src="/project-docs/ER.png" alt="ER Diagram" style="scale: 0.8; margin-bottom: 0;">
-    <h3 style="margin: 0;">Relational Schema</h3>
-    <img src="/project-docs/SCHEMA-2.png" alt="ER Diagram" style="scale: 0.8;">
+<div style="text-align: center; text-decoration: underline; margin-top: 5rem; display: flex; justify-content: center;">
+    <div style="display: flex; flex-direction: column; align-items: center; margin-right: 1rem;">
+        <img src="/project-docs/ER.png" alt="ER Diagram" style="width: 80%; height: 400px; object-fit: contain; margin-bottom: 0;">
+        <h3 style="margin: 0;">ER Diagram</h3>
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+        <img src="/project-docs/SCHEMA-final.png" alt="Relational Schema" style="width: 80%; height: 400px; object-fit: contain;">
+        <h3 style="margin: 0;">Relational Schema</h3>
+    </div>
 </div>
+
+## Requirements
+1. Make sure that the following are installed:
+    - [Python](https://www.python.org/downloads/)
+    - [MySQL](https://www.mysql.com/downloads/)
+
+2. Setting up the local database:
+    - Run MySQL in your terminal:
+
+    ```
+    mysql -u root -p
+    ```
+
+    - Enter your password
+    - Create the database called `dbms_mp_1`
+
+    ```
+    CREATE DATABASE dbms_mp_1;
+    ```
+
+    - Create the following tables:
+    
+    ```
+    CREATE TABLE COMPANY (
+        CompanyID varchar(10),
+        CompanyName varchar(20),
+        Location varchar(15),
+        Contact integer,
+        PRIMARY KEY (CompanyID)
+    );
+    ```
+    ```
+    CREATE TABLE EQUIPMENTS (
+        EquipmentID varchar(10),
+        EquipmentName varchar(20),
+        PowerRating integer,
+        ManufacturingDate date,
+        CompanyID varchar(10),
+        PRIMARY KEY (EquipmentID),
+        FOREIGN KEY (CompanyID) REFERENCES COMPANY(CompanyID)
+    );
+    ```
+    ```
+    CREATE TABLE OPERATORS (
+        OperatorID varchar(10),
+        OperatorName varchar(20),
+        Occupation varchar(15),
+        PhoneNumber integer,
+        CompanyID varchar(10),
+        PRIMARY KEY (OperatorID),
+        FOREIGN KEY (CompanyID) REFERENCES COMPANY(CompanyID)
+    );
+    ```
+    ```
+    CREATE TABLE ALERTS (
+        EquipmentID varchar(10),
+        OperatorID varchar(10),
+        EnergyConsumed integer,
+        TimeStamp timestamp,
+        PRIMARY KEY (EquipmentID, OperatorID),
+        FOREIGN KEY (EquipmentID) REFERENCES EQUIPMENTS(EquipmentID),
+        FOREIGN KEY (OperatorID) REFERENCES OPERATORS(OperatorID)
+    );
+    ```
+    ```
+    CREATE TABLE OPERATES (
+        OperatorID varchar(10),
+        CompanyID varchar(10),
+        PRIMARY KEY (OperatorID, CompanyID),
+        FOREIGN KEY (OperatorID) REFERENCES OPERATORS(OperatorID),
+        FOREIGN KEY (CompanyID) REFERENCES COMPANY(CompanyID)
+    );
+    ```
+
+## Installation (Run this locally)
+
+1. Clone this repo:
+```
+git clone https://github.com/siliconvolley/dbms-mini-project.git
+```
+2. Install the dependencies:
+```
+pip install -r requirements.txt
+```
+3. Run the app:
+```
+flask --app main.py run
+```

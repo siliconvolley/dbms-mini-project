@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Energy Monitoring System</title>
+        <link rel="stylesheet" href="/static/css/equip_detail.css" />
+    </head>
+    <body>
+        <h1>EquipmentID : {{ equipment.EquipmentID }}</h1>
+        <div class="container">
+            <div class="equip-info">
+                <div>Equipment Name : {{ equipment.EquipmentName }}</div>
+                <div>Power Rating : {{ equipment.PowerRating }}</div>
+                <div>Manufacturing Date : {{ equipment.ManufacturingDate }}</div>
+                <div>Company ID : {{ equipment.CompanyID }}</div>
+            </div>
+            <div class="options">
+                <div class="add-operator">
+                    <div>Operator ID:</div>
+                    <select name="CompanyID">
+                        <option value="" selected disabled hidden place>Select a CompanyID</option>
+                        {% for operator_id in operators %}
+                        <option value="{{ operator_id }}">{{ operator_id }}</option>
+                        {% endfor %}
+                    </select>
+                    <button class="add-operator-button">Add Operator</button>
+                    
+                </div>
+                <button
+                    class="add-log"
+                    onclick="window.location.href='/equipment_{{ equipment.EquipmentID }}/add_log'"
+                >
+                    Add Log
+                </button>
+            </div>
+        </div>
+    </body>
+</html>

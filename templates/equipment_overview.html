@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Energy Monitoring System</title>
+        <link rel="stylesheet" href="/static/css/style.css" />
+    </head>
+    <body>
+        <h1>Equipment Overview</h1>
+        <div class="equip-container">
+            {% for equipment in equipments %}
+            <div
+                onclick="window.location.href='/equipment_' + '{{ equipment.EquipmentID }}'"
+            >
+                {{ equipment.EquipmentName }}
+            </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>

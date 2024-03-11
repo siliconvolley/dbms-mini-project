@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Monitoring System</title>
+</head>
+<body>
+    <h1>CompanyID : {{ latest_company_id }}</h1>
+    <form action="/company" method = "POST">
+        <!-- <p>CompanyID <input type = "text" name = "CompanyID" /></p> -->
+        <p>CompanyName <input type = "text" name = "CompanyName" /></p>
+        <p>Location <input type = "text" name = "Location" /></p>
+        <p>Contact Number <input type = "number" name = "Contact" /></p>
+
+        <p><input type = "submit" value = "Submit" /></p>
+     </form>
+</body>
+</html>

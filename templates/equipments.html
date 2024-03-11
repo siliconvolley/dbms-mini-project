@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Energy Monitoring System</title>
+</head>
+<body>
+    <h1>EquipmentID : {{ latest_equipment_id }}</h1>
+    <form action="/equipments" method="POST">
+        <p>EquipmentName <input type="text" name="EquipmentName" /></p>
+        <p>PowerRating <input type="number" name="PowerRating" /></p>
+        <p>ManufacturingDate <input type="date" name="ManufacturingDate" /></p>
+        <p>CompanyID
+            <select name="CompanyID">
+                <option value="" selected disabled hidden place>Select a CompanyID</option>
+                {% for company_id in companies %}
+                <option value="{{ company_id }}">{{ company_id }}</option>
+                {% endfor %}
+            </select>
+        </p> <!--DUMB DROPDOWN WORKS NOW-->
+
+        <p><input type="submit" value="Submit" /></p>
+    </form>
+</body>
+</html>

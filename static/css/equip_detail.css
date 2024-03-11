@@ -1,0 +1,50 @@
+.container {
+    display: flex;
+}
+
+.equip-info > * {
+    background-color: lightgray;
+    width: fit-content;
+    height: 2rem;
+    border: 2px solid rgb(100, 100, 100);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    margin: 0.5em 0 0.5em 0;
+    padding-inline: 0.5em;
+}
+
+.options {
+    width: 15rem;
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0 0 3rem;
+}
+
+.add-operator > * {
+    margin:0 0 0.5em 0;
+}
+
+.add-operator-button, .add-log {
+    width: max-content;
+    height: 1.5rem;
+    cursor: pointer;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    place-content: center;
+    margin: 0.5em 0 0.5em 0;
+    padding-inline: 0.5em;
+    
+}
+
+.add-operator-button {
+    background-color: palegreen;
+    border: 2px solid rgb(91, 152, 91);
+    float: right;
+}
+
+.add-log {
+    background-color: palegoldenrod;
+    border: 2px solid rgb(155, 151, 111);
+}

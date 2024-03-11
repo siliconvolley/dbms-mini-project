@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Monitoring System</title>
+</head>
+<body>
+
+    <h1>Alert : {{ latest_alert_id }}</h1>
+    <form action="/equipment_{{ equipment_id }}/add_log" method = "POST">
+        <p>OperatorID <input type = "text" name = "OperatorID" /></p>
+        <p>Energy Consumed <input type = "text" name = "EnergyConsumed" /></p>
+        <p>Time Stamp : {{ time_stamp }}</p>
+
+        <p><input type = "submit" value = "Submit" /></p>
+     </form>
+</body>
+</html>
