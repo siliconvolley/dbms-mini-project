@@ -37,10 +37,10 @@ CREATE TABLE OPERATORS (
 
 CREATE TABLE OPERATES (
     OperatorID varchar(20),
-    CompanyID varchar(20),
-    PRIMARY KEY (OperatorID, CompanyID),
+    EquipmentID varchar(20),
+    PRIMARY KEY (OperatorID, EquipmentID),
     FOREIGN KEY (OperatorID) REFERENCES OPERATORS(OperatorID),
-    FOREIGN KEY (CompanyID) REFERENCES COMPANY(CompanyID)
+    FOREIGN KEY (EquipmentID) REFERENCES EQUIPMENTS(EquipmentID)
 );
 
 CREATE TABLE ALERTS (
@@ -49,6 +49,7 @@ CREATE TABLE ALERTS (
     OperatorID varchar(20),
     EnergyConsumed integer,
     TimeStamp timestamp,
+    PRIMARY KEY (AlertID),
     FOREIGN KEY (EquipmentID) REFERENCES EQUIPMENTS(EquipmentID),
     FOREIGN KEY (OperatorID) REFERENCES OPERATORS(OperatorID)
 );
@@ -86,13 +87,13 @@ VALUES
     ('AL004', 'E004', 'O004', 1200, '2024-03-05 14:30:00'),
     ('AL005', 'E005', 'O005', 500, '2024-03-05 16:00:00');
 
-INSERT INTO OPERATES (OperatorID, CompanyID)
+INSERT INTO OPERATES (OperatorID, EquipmentID)
 VALUES 
-    ('O001', 'C001'),
-    ('O002', 'C002'),
-    ('O003', 'C003'),
-    ('O004', 'C004'),
-    ('O005', 'C005');
+    ('O001', 'E001'),
+    ('O002', 'E002'),
+    ('O003', 'E003'),
+    ('O004', 'E004'),
+    ('O005', 'E005');
 
 SELECT * FROM COMPANY;
 SELECT * FROM EQUIPMENTS;
