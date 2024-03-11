@@ -74,7 +74,12 @@ def add_log(equipment_id):
         latest_alert_id = result['AlertID'] if result else None
         new_alert_id = increment_id(latest_alert_id)
 
-        cursor.execute("INSERT INTO ALERTS VALUES(%s,%s,%s,%s,%s)",(latest_alert_id, equipment_id, OperatorID, EnergyConsumed, TimeStamp))
+        cursor.execute("SELECT OperatorID, EquipmentID FROM OPERATES WHERE OperatorID = %s AND EquipmentID = %s", (OperatorID, equipment_id))
+        operates_check = cursor.fetchone()
+        if operates_check == None:
+            cursor.execute("INSERT INTO OPERATES VALUES(%s,%s)", (OperatorID, equipment_id))
+
+        cursor.execute("INSERT INTO ALERTS VALUES(%s,%s,%s,%s,%s)",(new_alert_id, equipment_id, OperatorID, EnergyConsumed, TimeStamp))
         mysql.connection.commit()
         cursor.execute("SELECT * FROM ALERTS")
         data = cursor.fetchall()
