@@ -1,1 +1,1 @@
-password="Rish@bh@mysql04"
+password="root"
