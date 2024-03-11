@@ -28,6 +28,7 @@ Description: A Python and MySQL project for tracking electrical equipment, opera
     ```
 
     - Enter your password
+    - **NOTE**: Update your MySQL password in the `config.py` file
     - Create the database called `dbms_mp_1`
 
     ```
