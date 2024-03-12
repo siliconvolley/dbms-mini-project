@@ -19,6 +19,16 @@ mysql = MySQL(app)
 def form():
     return render_template('index.html')
 
+@app.route('/search_equipment', methods=['GET'])
+def search_equipment():
+    equipment_name = request.args.get('equipment_name')
+    cursor = mysql.connection.cursor()
+    cursor.execute('SELECT EQUIPMENTS.*, CompanyName FROM EQUIPMENTS, COMPANY WHERE EquipmentName = %s AND EQUIPMENTS.CompanyID=COMPANY.CompanyID', (equipment_name,))
+    equipment = cursor.fetchone()
+    print(equipment)
+    cursor.close()
+    return render_template('search_results.html', equipment=equipment)
+
 # Add New page rendering
 @app.route('/add_new')
 def add_new():

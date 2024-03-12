@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Energy Monitoring System</title>
+        <link rel="stylesheet" href="/static/css/equip_detail.css">
+    </head>
+    <body>
+        <div class="home-page">
+            <img
+                src="/static/images/home.svg"
+                alt="Home Page"
+                style="scale: 1.5; margin: 0.5em 0.5em 0 0.5em; cursor: pointer"
+                onclick="window.location.href='/'"
+            />
+        </div>
+        <h1>Search for : {{ equipment.EquipmentName }}</h1>
+        <div class="equip-info">
+            <div>Equipment ID : {{ equipment.EquipmentID }}</div>
+            <div>Company Name : {{ equipment.CompanyName }}</div>
+            <div>Power Rating : {{ equipment.PowerRating }}</div>
+            <div>Manufacturing Date : {{ equipment.ManufacturingDate }}</div>
+        </div>
+    </body>
+</html>

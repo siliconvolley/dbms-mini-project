@@ -9,10 +9,13 @@
 </head>
 <body>
     <h1>Welcome to Energy Monitoring System</h1>
-    <div class="search-bar">
-        <input type="text" name="Search" placeholder="Search for Equipment">
-        <button class="add-new" onclick="window.location.href='/add_new'">Add new</button>
-    </div>
+    <form method="GET" action="/search_equipment">
+        <div class="search-bar">
+            <input type="text" name="equipment_name" placeholder="Search for Equipment">
+            <button type="submit" class="add-new">Search</button>
+        </div>
+    </form>
+    <button class="add-new" onclick="window.location.href='/add_new'">Add new</button>
     <div class="dashboard">
         <div onclick="window.location.href='/equipment_overview'">Equipment Overview</div>
         <div>Operators</div>
