@@ -7,26 +7,36 @@
         <link rel="stylesheet" href="/static/css/equip_detail.css" />
     </head>
     <body>
-        <div class="home-page"><img src="/static/images/home.svg" alt="Home Page" style="scale: 1.5; margin: 0.5em 0.5em 0 0.5em; cursor: pointer;" onclick="window.location.href='/'"></div>
+        <div class="home-page">
+            <img
+                src="/static/images/home.svg"
+                alt="Home Page"
+                style="scale: 1.5; margin: 0.5em 0.5em 0 0.5em; cursor: pointer"
+                onclick="window.location.href='/'"
+            />
+        </div>
         <h1>EquipmentID : {{ equipment.EquipmentID }}</h1>
         <div class="container">
             <div class="equip-info">
                 <div>Equipment Name : {{ equipment.EquipmentName }}</div>
                 <div>Power Rating : {{ equipment.PowerRating }}</div>
-                <div>Manufacturing Date : {{ equipment.ManufacturingDate }}</div>
+                <div>
+                    Manufacturing Date : {{ equipment.ManufacturingDate }}
+                </div>
                 <div>Company ID : {{ equipment.CompanyID }}</div>
             </div>
             <div class="options">
                 <div class="add-operator">
                     <div>Operator ID:</div>
-                    <select name="CompanyID">
-                        <option value="" selected disabled hidden place>Select a CompanyID</option>
-                        {% for operator_id in operators %}
-                        <option value="{{ operator_id }}">{{ operator_id }}</option>
-                        {% endfor %}
-                    </select>
-                    <button class="add-operator-button">Add Operator</button>
-                    
+                    <form method="POST">
+                        <select name="OperatorID">
+                            <option value="" selected disabled hidden>Select an OperatorID</option>
+                            {% for operator_id in operators %}
+                                <option value="{{ operator_id }}">{{ operator_id }}</option>
+                            {% endfor %}
+                        </select>
+                        <button type="submit" class="add-operator-button">Add Operator</button>
+                    </form>
                 </div>
                 <button
                     class="add-log"
