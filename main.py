@@ -25,8 +25,10 @@ def search_equipment():
     cursor = mysql.connection.cursor()
     cursor.execute('SELECT EQUIPMENTS.*, CompanyName FROM EQUIPMENTS, COMPANY WHERE EquipmentName = %s AND EQUIPMENTS.CompanyID=COMPANY.CompanyID', (equipment_name,))
     equipment = cursor.fetchone()
-    print(equipment)
     cursor.close()
+    if equipment == None:
+        return render_template('search_not_found.html')
+    
     return render_template('search_results.html', equipment=equipment)
 
 # Add New page rendering
