@@ -54,7 +54,7 @@ CREATE TABLE ALERTS (
     FOREIGN KEY (OperatorID) REFERENCES OPERATORS(OperatorID)
 );
 
----DATA INSERTION---
+---EXAMPLE DATA INSERTION---
 INSERT INTO COMPANY (CompanyID, CompanyName, Location, Contact)
 VALUES 
     ('C001', 'ABC Electronics', 'New York', 12345678),
