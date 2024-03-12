@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request
+from flask import Flask, render_template, request
 from flask_mysqldb import MySQL
 from datetime import datetime
 from config import password
@@ -36,18 +36,31 @@ def equipment_overview():
         return render_template('equipment_overview.html', equipments=equipments)
     
 # Selected Equipment Page rendering
-@app.route('/equipment_<equipment_id>')
+@app.route('/equipment_<equipment_id>', methods=['GET', 'POST'])
 def equipment_detail(equipment_id):
-    cursor = mysql.connection.cursor()
-    cursor.execute('SELECT * FROM EQUIPMENTS WHERE EquipmentID = %s', (equipment_id,))
-    equipment = cursor.fetchone()
+    if request.method == 'GET':
+        cursor = mysql.connection.cursor()
+        cursor.execute('SELECT * FROM EQUIPMENTS WHERE EquipmentID = %s', (equipment_id,))
+        equipment = cursor.fetchone()
 
-    cursor.execute("SELECT OperatorID FROM OPERATORS")
-    result = cursor.fetchall()
-    operators = [row['OperatorID'] for row in result]
-    cursor.close()
+        cursor.execute("SELECT OperatorID FROM OPERATORS")
+        result = cursor.fetchall()
+        operators = [row['OperatorID'] for row in result]
+        cursor.close()
 
-    return render_template('equipment_detail.html', equipment=equipment, operators = operators)
+        return render_template('equipment_detail.html', equipment=equipment, operators = operators)
+
+    if request.method == 'POST':
+        cursor = mysql.connection.cursor()
+        operator_id = request.form.get('OperatorID')
+        cursor.execute('INSERT INTO OPERATES (OperatorID, EquipmentID) VALUES (%s, %s)', (operator_id, equipment_id))
+        mysql.connection.commit()
+        
+        cursor.execute('SELECT * FROM OPERATES')
+        operates = cursor.fetchall()
+        cursor.close()
+
+        return render_template('display_operates_data.html', operates=operates)  
 
 # Selected Equipment adding Alert page rendering and logic
 @app.route('/equipment_<equipment_id>/add_log', methods = ['POST', 'GET'])
@@ -157,15 +170,17 @@ def equipments_entry():
         CompanyID = request.form['CompanyID']        
 
         cursor = mysql.connection.cursor()
-        cursor.execute("SELECT CompanyID FROM COMPANY ORDER BY CompanyID DESC LIMIT 1")
+        cursor.execute("SELECT EquipmentID FROM EQUIPMENTS ORDER BY EquipmentID DESC LIMIT 1")
         result = cursor.fetchone()
         latest_equipment_id = result['EquipmentID'] if result else None
         new_equipment_id = increment_id(latest_equipment_id)
 
         cursor.execute(" INSERT INTO EQUIPMENTS VALUES(%s,%s,%s,%s,%s)",(new_equipment_id, EquipmentName, PowerRating, ManufacturingDate, CompanyID))
         mysql.connection.commit()
+        cursor.execute('SELECT * FROM EQUIPMENTS')
+        data = cursor.fetchall()
         cursor.close()
-        return f"Done!!"
+        return render_template('display_equipments_data.html', data=data)
     
 # Equipments Data Page
 @app.route('/equipments_data')
@@ -213,8 +228,10 @@ def operators_entry():
 
         cursor.execute("INSERT INTO OPERATORS VALUES(%s,%s,%s,%s,%s)",(new_opeator_id, OperatorName, Occuption, PhoneNumber, CompanyID))
         mysql.connection.commit()
+        cursor.execute('SELECT * FROM OPERATORS')
+        data = cursor.fetchall()
         cursor.close()
-        return f"Done!!"
+        return render_template('display_operators_data.html', data=data)
     
 # Operators Data Page
 @app.route('/operators_data')
