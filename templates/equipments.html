@@ -4,7 +4,14 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Energy Monitoring System</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+            rel="stylesheet"
+        />
         <link rel="stylesheet" href="/static/css/style.css" />
+        <link rel="stylesheet" href="/static/css/forms.css" />
     </head>
     <body>
         <div class="home-page">
@@ -15,27 +22,51 @@
                 onclick="window.location.href='/'"
             />
         </div>
-        <h1>EquipmentID : {{ latest_equipment_id }}</h1>
-        <form action="/equipments" method="POST">
-            <p>EquipmentName <input type="text" name="EquipmentName" /></p>
-            <p>PowerRating <input type="number" name="PowerRating" /></p>
-            <p>
-                ManufacturingDate <input type="date" name="ManufacturingDate" />
-            </p>
-            <p>
-                CompanyID
-                <select name="CompanyID">
-                    <option value="" selected disabled hidden place>
-                        Select a CompanyID
-                    </option>
-                    {% for company_id in companies %}
-                    <option value="{{ company_id }}">{{ company_id }}</option>
-                    {% endfor %}
-                </select>
-            </p>
-            <!--DUMB DROPDOWN WORKS NOW-->
-
-            <p><input type="submit" value="Submit" /></p>
-        </form>
+        <div class="main-container">
+            <h1>EquipmentID : {{ latest_equipment_id }}</h1>
+            <div class="input-container">
+                <form class="wrapper" action="/equipments" method="POST">
+                    <div class="inner-wrapper">
+                        <p>EquipmentName</p>
+                        <input
+                            type="text"
+                            name="EquipmentName"
+                            placeholder="Enter Equipment Name"
+                        />
+                        <p>PowerRating</p>
+                        <input
+                            type="number"
+                            name="PowerRating"
+                            placeholder="Enter Power Rating"
+                        />
+                        <p>ManufacturingDate</p>
+                        <input
+                            type="date"
+                            name="ManufacturingDate"
+                            placeholder="Choose Manufacturing data"
+                        />
+                        <p>CompanyID</p>
+                        <select name="CompanyID">
+                            <option value="" selected disabled hidden place>
+                                -- Select a CompanyID --
+                            </option>
+                            {% for company_id in companies %}
+                            <option value="{{ company_id }}">
+                                {{ company_id }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <!--DUMB DROPDOWN WORKS NOW-->
+                    <p>
+                        <input
+                            class="submit-button"
+                            type="submit"
+                            value="Submit"
+                        />
+                    </p>
+                </form>
+            </div>
+        </div>
     </body>
 </html>

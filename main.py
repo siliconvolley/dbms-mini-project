@@ -109,7 +109,7 @@ def add_log(equipment_id):
         cursor.execute("SELECT * FROM ALERTS")
         data = cursor.fetchall()
         cursor.close()
-        return render_template('alerts.html', data=data)
+        return render_template('display_alerts_data.html', data=data)
 
 
 # Company Entry Page

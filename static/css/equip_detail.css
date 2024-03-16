@@ -1,41 +1,65 @@
-.container {
+:root {
+    --element-spacing : 1em;
+}
+
+.equip-container {
+    height: auto;
     display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 5rem;
 }
 
 .equip-info > * {
+    font-size: large;
     background-color: lightgray;
+    height: 4rem;
     width: fit-content;
-    height: 2rem;
+    font-weight: 700;
     border: 2px solid rgb(100, 100, 100);
     border-radius: 10px;
     display: flex;
     align-items: center;
-    margin: 0.5em 0 0.5em 0;
-    padding-inline: 0.5em;
+    margin: 1em 0 0.5em 0;
+    padding-inline: 2em;
 }
 
 .options {
     width: 15rem;
     display: flex;
     flex-direction: column;
-    margin: 2rem 0 0 3rem;
+    margin: 2rem 0 0 5rem;
 }
 
-.add-operator > * {
-    margin:0 0 0.5em 0;
+.add-operator {
+    margin-bottom: var(--element-spacing);
 }
 
 .add-operator-button, .add-log {
-    width: max-content;
-    height: 1.5rem;
+    font-size: medium;
+    font-weight: 500;
+    height: 2.5rem;
+    width: fit-content;
     cursor: pointer;
     border-radius: 10px;
     display: flex;
     align-items: center;
     place-content: center;
     margin: 0.5em 0 0.5em 0;
+    padding-inline: 0.75em;
+}
+
+.add-operator-title {
+    font-size: x-large;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+}
+
+.operator-option {
+    font-size: large;
+    margin-bottom: var(--element-spacing);
     padding-inline: 0.5em;
-    
+    padding-block: 0.25em;
 }
 
 .add-operator-button {
@@ -44,7 +68,15 @@
     float: right;
 }
 
+.add-operator-button:hover {
+    background-color: rgb(121, 203, 121);
+}
+
 .add-log {
     background-color: palegoldenrod;
     border: 2px solid rgb(155, 151, 111);
+}
+
+.add-log:hover {
+    background-color: rgb(192, 187, 137);
 }

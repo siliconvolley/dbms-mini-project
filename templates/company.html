@@ -1,21 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Energy Monitoring System</title>
-    <link rel="stylesheet" href="/static/css/style.css" />
-</head>
-<body>
-    <div class="home-page"><img src="/static/images/home.svg" alt="Home Page" style="scale: 1.5; margin: 0.5em 0.5em 0 0.5em; cursor: pointer;" onclick="window.location.href='/'"></div>
-    <h1>CompanyID : {{ latest_company_id }}</h1>
-    <form action="/company" method = "POST">
-        <!-- <p>CompanyID <input type = "text" name = "CompanyID" /></p> -->
-        <p>CompanyName <input type = "text" name = "CompanyName" /></p>
-        <p>Location <input type = "text" name = "Location" /></p>
-        <p>Contact Number <input type = "number" name = "Contact" /></p>
-
-        <p><input type = "submit" value = "Submit" /></p>
-     </form>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Energy Monitoring System</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/static/css/style.css" />
+        <link rel="stylesheet" href="/static/css/forms.css" />
+    </head>
+    <body>
+        <div class="home-page">
+            <img
+                src="/static/images/home.svg"
+                alt="Home Page"
+                style="scale: 1.5; margin: 0.5em 0.5em 0 0.5em; cursor: pointer"
+                onclick="window.location.href='/'"
+            />
+        </div>
+        <div class="main-container">
+            <h1>CompanyID : {{ latest_company_id }}</h1>
+            <div class="input-container">
+                <form class="wrapper" action="/company" method="POST">
+                    <div class="inner-wrapper">
+                        <p>CompanyName</p>
+                        <input
+                            type="text"
+                            name="CompanyName"
+                            placeholder="Enter Company Name"
+                        />
+                        <p>Location</p>
+                        <input
+                            type="text"
+                            name="Location"
+                            placeholder="Enter Location"
+                        />
+                        <p>Contact Number</p>
+                        <input
+                            type="number"
+                            name="Contact"
+                            placeholder="Enter Contact Number"
+                        />
+                    </div>
+                    <p>
+                        <input
+                            class="submit-button"
+                            type="submit"
+                            value="Submit"
+                        />
+                    </p>
+                </form>
+            </div>
+        </div>
+    </body>
 </html>

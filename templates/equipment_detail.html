@@ -4,6 +4,9 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Energy Monitoring System</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="/static/css/style.css" />
         <link rel="stylesheet" href="/static/css/equip_detail.css" />
     </head>
@@ -17,7 +20,7 @@
             />
         </div>
         <h1>EquipmentID : {{ equipment.EquipmentID }}</h1>
-        <div class="container">
+        <div class="equip-container">
             <div class="equip-info">
                 <div>Equipment Name : {{ equipment.EquipmentName }}</div>
                 <div>Power Rating : {{ equipment.PowerRating }}</div>
@@ -28,10 +31,10 @@
             </div>
             <div class="options">
                 <div class="add-operator">
-                    <div>Operator ID:</div>
+                    <div class="add-operator-title">Operator ID:</div>
                     <form method="POST">
-                        <select name="OperatorID">
-                            <option value="" selected disabled hidden>Select an OperatorID</option>
+                        <select class= "operator-option" name="OperatorID">
+                            <option value="" selected disabled hidden>-- Select an OperatorID --</option>
                             {% for operator_id in operators %}
                                 <option value="{{ operator_id }}">{{ operator_id }}</option>
                             {% endfor %}
