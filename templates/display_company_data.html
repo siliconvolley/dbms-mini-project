@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Energy Monitoring System</title>
-</head>
-<body>
-    <div class="home-page"><img src="/static/images/home.svg" alt="Home Page" style="scale: 1.5; margin: 0.5em 0.5em 0 0.5em; cursor: pointer;" onclick="window.location.href='/'"></div>
-    <h1>Company Data Page</h1>
-    <table>
-        <tr>
-            <th>CompanyID</th>
-            <th>CompanyName</th>
-            <th>Location</th>
-            <th>Contact</th>
-        </tr>
-        {% for row in data %}
-        <tr>
-            <td>{{ row.CompanyID }}</td>
-            <td>{{ row.CompanyName }}</td>
-            <td>{{ row.Location }}</td>
-            <td>{{ row.Contact }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Energy Monitoring System</title>
+        <link rel="stylesheet" href="/static/css/style.css" />
+    </head>
+    <body>
+        <div class="home-page">
+            <img
+                src="/static/images/home.svg"
+                alt="Home Page"
+                style="scale: 1.5; margin: 0.5em 0.5em 0 0.5em; cursor: pointer"
+                onclick="window.location.href='/'"
+            />
+        </div>
+        <h1>Company Data Page</h1>
+        <table>
+            <tr>
+                <th>CompanyID</th>
+                <th>CompanyName</th>
+                <th>Location</th>
+                <th>Contact</th>
+            </tr>
+            {% for row in data %}
+            <tr>
+                <td>{{ row.CompanyID }}</td>
+                <td>{{ row.CompanyName }}</td>
+                <td>{{ row.Location }}</td>
+                <td>{{ row.Contact }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
 </html>

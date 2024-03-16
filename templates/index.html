@@ -4,18 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Energy Monitoring System</title>
-    <script src="/static/js/home.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <h1>Welcome to Energy Monitoring System</h1>
-    <form method="GET" action="/search_equipment">
-        <div class="search-bar">
-            <input type="text" name="equipment_name" placeholder="Search for Equipment">
-            <button type="submit" class="add-new">Search</button>
-        </div>
-    </form>
-    <button class="add-new" onclick="window.location.href='/add_new'">Add new</button>
+    <div class="bg-image"></div>
+    <h1 style="margin-top: 3rem;">Energy Monitoring System</h1>
+    <div class="home-nav">
+        <form class="search-bar"method="GET" action="/search_equipment">
+            <div>
+                <input type="text" name="search-input equipment_name" placeholder="Search for Equipment">
+                <button type="submit" name="search-button">
+                    <img src="/static/images/search.svg" alt="Search icon">
+                </button>
+            </div>
+        </form>
+        <button class="add-new" onclick="window.location.href='/add_new'">ADD NEW</button>
+    </div>
     <div class="dashboard">
         <div onclick="window.location.href='/equipment_overview'">Equipment Overview</div>
         <div>Operators</div>

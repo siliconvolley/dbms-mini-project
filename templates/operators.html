@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Energy Monitoring System</title>
-</head>
-<body>
-    <div class="home-page"><img src="/static/images/home.svg" alt="Home Page" style="scale: 1.5; margin: 0.5em 0.5em 0 0.5em; cursor: pointer;" onclick="window.location.href='/'"></div>
-    <h1>OperatorID: {{latest_operator_id}}</h1>
-    <form action="/operators" method = "POST">
-        <p>OperatorName <input type = "text" name = "OperatorName" /></p>
-        <p>Occuption <input type = "text" name = "Occuption" /></p>
-        <p>PhoneNumber <input type = "number" name = "PhoneNumber" /></p>
-        <!-- <p>CompanyID <input type = "text" name = "CompanyID" /></p>--> <!-- Make this a toggle -->
-        <p>CompanyID
-            <select name="CompanyID">
-                <option value="" selected disabled hidden place>Select a CompanyID</option>
-                {% for company_id in companies %}
-                <option value="{{ company_id }}">{{ company_id }}</option>
-                {% endfor %}
-            </select>
-        </p> <!--DUMB DROPDOWN WORKS NOW-->
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Energy Monitoring System</title>
+        <link rel="stylesheet" href="/static/css/style.css" />
+    </head>
+    <body>
+        <div class="home-page">
+            <img
+                src="/static/images/home.svg"
+                alt="Home Page"
+                style="scale: 1.5; margin: 0.5em 0.5em 0 0.5em; cursor: pointer"
+                onclick="window.location.href='/'"
+            />
+        </div>
+        <h1>OperatorID: {{latest_operator_id}}</h1>
+        <form action="/operators" method="POST">
+            <p>OperatorName <input type="text" name="OperatorName" /></p>
+            <p>Occuption <input type="text" name="Occuption" /></p>
+            <p>PhoneNumber <input type="number" name="PhoneNumber" /></p>
+            <!-- <p>CompanyID <input type = "text" name = "CompanyID" /></p>-->
+            <!-- Make this a toggle -->
+            <p>
+                CompanyID
+                <select name="CompanyID">
+                    <option value="" selected disabled hidden place>
+                        Select a CompanyID
+                    </option>
+                    {% for company_id in companies %}
+                    <option value="{{ company_id }}">{{ company_id }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <!--DUMB DROPDOWN WORKS NOW-->
 
-        <p><input type = "submit" value = "Submit" /></p>
-     </form>
-</body>
+            <p><input type="submit" value="Submit" /></p>
+        </form>
+    </body>
 </html>

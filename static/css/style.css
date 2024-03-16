@@ -1,34 +1,138 @@
+ * {
+    font-family: "Inter", sans-serif;
+    line-height: 1.5;
+}
+
+html {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
+html::before {
+    content: "";
+    background-image: url('/static/images/website-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.home-page > img {
+    padding: 1em;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3.5rem;
+    margin-top: 0 ;
+}
+
+.home-nav {
+    height: 6rem;
+    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 8rem;
+    border-radius: 5rem;
+}
+
+.home-nav > * {
+    margin-right: 5em;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar div {
+    display: flex;
+    align-items: center;
+    height: 5rem;
+}
+
+.search-bar input[type="text"] {
+    width: 25rem;
+    height: 2.5rem;
+    margin-right: 0.75em;
+    padding-left: 10px; 
+}
+
+.search-bar button[name="search-button"] {
+    height: 2.75rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 2px solid rgb(120, 120, 120);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-new {
+    scale: 1.5;
+    height: 2.75rem;
+    letter-spacing: 0.1em;
+    background-color: rgb(65, 65, 65);
+    color: aliceblue;
+    font-weight: 500;
+    border: 2px solid rgb(120, 120, 120);
+    border-radius: 15px;
+    margin: 0 1em;
+    padding: 0 0.75em;
+    cursor: pointer;
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 5rem 8rem 0 8rem;
+}
+
 .dashboard > * {
     background-color: lightgray;
-    width: 10rem;
-    height: 2rem;
+    width: 20rem;
+    height: 4rem;
     cursor: pointer;
     border: 2px solid rgb(100, 100, 100);
     border-radius: 5rem;
     display: flex;
     align-items: center;
-    place-content: center;
+    justify-content: center;
+    padding-inline: 2em;
     margin: 0.5em 0 0.5em 0;
+    font-size: 1rem;
 }
 
 .dashboard > *:hover {
     background-color: rgb(100, 100, 100);
 }
 
-.equip-container > * {
-    background-color: lightgray;
-    width: 10rem;
-    height: 2rem;
-    cursor: pointer;
-    border: 2px solid rgb(100, 100, 100);
-    border-radius: 5rem;
-    display: flex;
+.data-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
     align-items: center;
-    place-content: center;
-    margin: 0.5em 0 0.5em 0;
+    margin: 0 16rem;
 }
 
-.add-new {
-    margin: 0.5em 0.5em 0 0.5em;
+.cards {
+    background-color: lightgray;
+    width: 20rem;
+    height: 4rem;
     cursor: pointer;
+    border: 2px solid rgb(100, 100, 100);
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5em 0 0.5em 0;
 }
