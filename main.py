@@ -18,7 +18,7 @@ mysql = MySQL(app)
 @app.route('/', methods=['GET', 'POST'])
 def form():
     if request.method == 'GET':
-        return render_template('login.html')
+        return render_template('auth/login.html')
     
     if request.method == 'POST':
         username = request.form.get('username')
@@ -36,7 +36,7 @@ def form():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'GET':
-        return render_template('signup.html')
+        return render_template('auth/signup.html')
     
     if request.method == 'POST':
         username = request.form.get('username')
@@ -76,7 +76,7 @@ def search_equipment():
 # Add New page rendering
 @app.route('/add_new')
 def add_new():
-    return render_template('add_new.html')
+    return render_template('forms/add_new.html')
 
 # All Equipments Overview page rendering
 @app.route('/equipment_overview')
@@ -87,7 +87,7 @@ def equipment_overview():
         equipments = cursor.fetchall()
         cursor.close()
 
-        return render_template('equipment_overview.html', equipments=equipments)
+        return render_template('equipments/equipment_overview.html', equipments=equipments)
     
 # Selected Equipment Page rendering
 @app.route('/equipment_<equipment_id>', methods=['GET', 'POST'])
@@ -102,7 +102,7 @@ def equipment_detail(equipment_id):
         operators = [row['OperatorID'] for row in result]
         cursor.close()
 
-        return render_template('equipment_detail.html', equipment=equipment, operators = operators)
+        return render_template('equipments/equipment_detail.html', equipment=equipment, operators = operators)
 
     if request.method == 'POST':
         cursor = mysql.connection.cursor()
@@ -114,7 +114,7 @@ def equipment_detail(equipment_id):
         operates = cursor.fetchall()
         cursor.close()
 
-        return render_template('display_operates_data.html', operates=operates)  
+        return render_template('display_data/display_operates_data.html', operates=operates)  
 
 # Selected Equipment adding Alert page rendering and logic
 @app.route('/equipment_<equipment_id>/add_log', methods = ['POST', 'GET'])
@@ -128,7 +128,7 @@ def add_log(equipment_id):
         TimeStamp = datetime.now()
         cursor.close()
 
-        return render_template('add_log.html', latest_alert_id = new_alert_id, equipment_id = equipment_id, time_stamp = TimeStamp)
+        return render_template('equipments/add_log.html', latest_alert_id = new_alert_id, equipment_id = equipment_id, time_stamp = TimeStamp)
     
     if request.method == 'POST':
         OperatorID = request.form['OperatorID']
@@ -151,7 +151,7 @@ def add_log(equipment_id):
         cursor.execute("SELECT * FROM ALERTS")
         data = cursor.fetchall()
         cursor.close()
-        return render_template('display_alerts_data.html', data=data)
+        return render_template('display_data/display_alerts_data.html', data=data)
 
 
 # Company Entry Page
@@ -165,7 +165,7 @@ def company_entry():
         new_company_id = increment_id(latest_company_id)
         cursor.close()
         
-        return render_template('company.html', latest_company_id=new_company_id)
+        return render_template('forms/company.html', latest_company_id=new_company_id)
      
     if request.method == 'POST':
         CompanyName = request.form['CompanyName']
@@ -183,7 +183,7 @@ def company_entry():
         cursor.execute("SELECT * FROM COMPANY")
         data = cursor.fetchall()
         cursor.close()
-        return render_template('display_company_data.html', data=data)
+        return render_template('display_data/display_company_data.html', data=data)
 
 # Company Data Page
 @app.route('/company_data')
@@ -193,7 +193,7 @@ def display_company_data():
         cursor.execute("SELECT * FROM COMPANY")
         data = cursor.fetchall()
         cursor.close()
-        return render_template('display_company_data.html', data=data)
+        return render_template('display_data/display_company_data.html', data=data)
     except Exception as e:
         print("Error fetching data:", str(e))
         return "Error fetching data. Please check the console for details."
@@ -215,7 +215,7 @@ def equipments_entry():
 
         cursor.close()
         
-        return render_template('equipments.html', latest_equipment_id=new_equipment_id, companies=companies)
+        return render_template('forms/equipments.html', latest_equipment_id=new_equipment_id, companies=companies)
      
     if request.method == 'POST':
         EquipmentName = request.form['EquipmentName']
@@ -234,7 +234,7 @@ def equipments_entry():
         cursor.execute('SELECT * FROM EQUIPMENTS')
         data = cursor.fetchall()
         cursor.close()
-        return render_template('display_equipments_data.html', data=data)
+        return render_template('display_data/display_equipments_data.html', data=data)
     
 # Equipments Data Page
 @app.route('/equipments_data')
@@ -244,7 +244,7 @@ def display_equipments_data():
         cursor.execute("SELECT * FROM EQUIPMENTS")
         data = cursor.fetchall()
         cursor.close()
-        return render_template('display_equipments_data.html', data=data)
+        return render_template('display_data/display_equipments_data.html', data=data)
     except Exception as e:
         print("Error fetching data:", str(e))
         return "Error fetching data. Please check the console for details."
@@ -266,7 +266,7 @@ def operators_entry():
         
         cursor.close()
 
-        return render_template('operators.html', latest_operator_id=new_opeator_id, companies=companies)
+        return render_template('forms/operators.html', latest_operator_id=new_opeator_id, companies=companies)
      
     if request.method == 'POST':
         OperatorName = request.form['OperatorName']
@@ -285,7 +285,7 @@ def operators_entry():
         cursor.execute('SELECT * FROM OPERATORS')
         data = cursor.fetchall()
         cursor.close()
-        return render_template('display_operators_data.html', data=data)
+        return render_template('display_data/display_operators_data.html', data=data)
     
 # Operators Data Page
 @app.route('/operators_data')
@@ -295,7 +295,7 @@ def display_operators_data():
         cursor.execute("SELECT * FROM OPERATORS")
         data = cursor.fetchall()
         cursor.close()
-        return render_template('display_operators_data.html', data=data)
+        return render_template('display_data/display_operators_data.html', data=data)
     except Exception as e:
         print("Error fetching data:", str(e))
         return "Error fetching data. Please check the console for details."
