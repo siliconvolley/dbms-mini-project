@@ -1,0 +1,25 @@
+.image-container {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    place-content: center;
+    margin: 0 5rem 5rem 5rem;
+}
+
+.image-background {
+    height: 40%;
+    width: min(30%, 30rem);
+    background-color: #fbfbfb;
+    border: 2px solid #6d6d6d;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.not-found-image {
+    scale: 3;
+    margin: 2rem 0 2rem 0;
+}

@@ -4,7 +4,14 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Energy Monitoring System</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+            rel="stylesheet"
+        />
         <link rel="stylesheet" href="/static/css/style.css" />
+        <link rel="stylesheet" href="/static/css/not_found.css">
     </head>
     <body>
         <div class="home-page">
@@ -15,21 +22,15 @@
                 onclick="window.location.href='/'"
             />
         </div>
-        <div
-            style="
-                height: 80vh;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                place-content: center;
-            "
-        >
-            <img
-                src="/static/images/bird.svg"
-                alt="Search not found"
-                style="scale: 3; margin-bottom: 1em"
-            />
-            <h3>Equipment not found!</h3>
+        <div class="image-container">
+            <div class="image-background">
+                <img
+                    class="not-found-image"
+                    src="/static/images/bird.svg"
+                    alt="Search not found"
+                />
+                <h3>Equipment not found!</h3>
+            </div>
         </div>
     </body>
 </html>

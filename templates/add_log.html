@@ -4,7 +4,14 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Energy Monitoring System</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+            rel="stylesheet"
+        />
         <link rel="stylesheet" href="/static/css/style.css" />
+        <link rel="stylesheet" href="/static/css/forms.css" />
     </head>
     <body>
         <div class="home-page">
@@ -15,13 +22,39 @@
                 onclick="window.location.href='/'"
             />
         </div>
-        <h1>Alert : {{ latest_alert_id }}</h1>
-        <form action="/equipment_{{ equipment_id }}/add_log" method="POST">
-            <p>OperatorID <input type="text" name="OperatorID" /></p>
-            <p>Energy Consumed <input type="text" name="EnergyConsumed" /></p>
-            <p>Time Stamp : {{ time_stamp }}</p>
-
-            <p><input type="submit" value="Submit" /></p>
-        </form>
+        <div class="main-container">
+            <h1>Alert : {{ latest_alert_id }}</h1>
+            <div class="input-container">
+                <form
+                    class="wrapper"
+                    action="/equipment_{{ equipment_id }}/add_log"
+                    method="POST"
+                >
+                    <div class="inner-wrapper">
+                        <p>OperatorID</p>
+                        <input
+                            type="text"
+                            name="OperatorID"
+                            placeholder="Enter Operator ID"
+                        />
+                        <p>Energy Consumed</p>
+                        <input
+                            type="text"
+                            name="EnergyConsumed"
+                            placeholder="Enter Energy Consumed"
+                        />
+                        <p>Time Stamp</p>
+                        <p>{{ time_stamp }}</p>
+                    </div>
+                    <p>
+                        <input
+                            class="submit-button"
+                            type="submit"
+                            value="Submit"
+                        />
+                    </p>
+                </form>
+            </div>
+        </div>
     </body>
 </html>
