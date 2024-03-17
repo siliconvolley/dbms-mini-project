@@ -54,6 +54,12 @@ CREATE TABLE ALERTS (
     FOREIGN KEY (OperatorID) REFERENCES OPERATORS(OperatorID)
 );
 
+CREATE TABLE AUTH (
+    UserName varchar(30),
+    Password varchar(30),
+    PRIMARY KEY (UserName, Password)
+);
+
 ---EXAMPLE DATA INSERTION---
 INSERT INTO COMPANY (CompanyID, CompanyName, Location, Contact)
 VALUES 

@@ -41,7 +41,7 @@ option {
 .inner-wrapper > input {
     border: 2px solid #6d6d6d;
     border-radius: 10px;
-    padding-left: 1em;
+    padding-inline: 1em;
 }
 
 /* For chromium based and safari browsers */

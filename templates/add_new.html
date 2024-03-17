@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Energy Monitoring System</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/style.css" />
-</head>
-<body>
-    <div class="home-page"><img src="/static/images/home.svg" alt="Home Page" style="scale: 1.5; margin: 0.5em 0.5em 0 0.5em; cursor: pointer;" onclick="window.location.href='/'"></div>
-    <h1>ADD NEW</h1>
-    <div class="dashboard">
-        <div onclick="window.location.href='/company'">
-            New Company
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Energy Monitoring System</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/static/css/style.css" />
+    </head>
+    <body>
+        <div class="home-page">
+            <img
+                src="/static/images/home.svg"
+                alt="Home Page"
+                style="scale: 1.5; margin: 0.5em 0.5em 0 0.5em; cursor: pointer"
+                onclick="window.location.href='/home'"
+            />
         </div>
-        <div onclick="window.location.href='/equipments'">
-            New Equipment
+        <h1>ADD NEW</h1>
+        <div class="dashboard">
+            <div onclick="window.location.href='/company'">New Company</div>
+            <div onclick="window.location.href='/equipments'">
+                New Equipment
+            </div>
+            <div onclick="window.location.href='/operators'">New Operator</div>
         </div>
-        <div onclick="window.location.href='/operators'">
-            New Operator
-        </div>
-    </div>
-    <style>
-        .container > * {
-            margin: 0 0 0.5em 0;
-        }
-    </style>
-</body>
+        <style>
+            .container > * {
+                margin: 0 0 0.5em 0;
+            }
+        </style>
+    </body>
 </html>

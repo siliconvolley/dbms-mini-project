@@ -7,11 +7,19 @@
         <link rel="stylesheet" href="/static/css/style.css" />
     </head>
     <body>
-        <div class="home-page"><img src="/static/images/home.svg" alt="Home Page" style="scale: 1.5; margin: 0.5em 0.5em 0 0.5em; cursor: pointer;" onclick="window.location.href='/'"></div>
+        <div class="home-page">
+            <img
+                src="/static/images/home.svg"
+                alt="Home Page"
+                style="scale: 1.5; margin: 0.5em 0.5em 0 0.5em; cursor: pointer"
+                onclick="window.location.href='/home'"
+            />
+        </div>
         <h1>Equipment Overview</h1>
         <div class="data-container">
             {% for equipment in equipments %}
-            <div class="cards"
+            <div
+                class="cards"
                 onclick="window.location.href='/equipment_' + '{{ equipment.EquipmentID }}'"
             >
                 {{ equipment.EquipmentName }}
