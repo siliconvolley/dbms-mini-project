@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from flask_mysqldb import MySQL
 from datetime import datetime
 from config import password
@@ -14,11 +14,53 @@ mysql = MySQL(app)
 
 # ============================================= User Interface ========================================================
 
-# Home Page rendering
-@app.route('/')
+# Login Page rendering
+@app.route('/', methods=['GET', 'POST'])
 def form():
-    return render_template('index.html')
+    if request.method == 'GET':
+        return render_template('login.html')
+    
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        cursor = mysql.connection.cursor()
+        cursor.execute('SELECT * FROM AUTH WHERE UserName = %s AND Password = %s', (username, password))
+        credentials = cursor.fetchone()
+        cursor.close()
+        if credentials == None:
+            return '<h1>Wrong Credentials</h1>'
 
+        return render_template('home.html')
+
+# Signup Page rendering
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'GET':
+        return render_template('signup.html')
+    
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        cursor = mysql.connection.cursor()
+
+        cursor.execute('SELECT * FROM AUTH WHERE UserName = %s AND Password = %s', (username, password))
+        existing_user = cursor.fetchone()
+        
+
+        if existing_user:
+            return '<h1>Username and password combination already exists</h1>'
+
+        cursor.execute('INSERT INTO AUTH (UserName, Password) VALUES (%s,%s)', (username, password))
+        mysql.connection.commit()
+        cursor.close()
+        return redirect('/')
+
+# Home Page Rendering
+@app.route('/home')
+def home_page():
+    return render_template('home.html')
+
+# Home Page Searching
 @app.route('/search_equipment', methods=['GET'])
 def search_equipment():
     equipment_name = request.args.get('equipment_name')

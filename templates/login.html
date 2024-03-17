@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WELCOME</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/forms.css">
+</head>
+<body>
+    <div class="bg-image"></div>
+    <div class="main-container">
+        <h1>Welcome to Energy Monitoring System</h1>
+        <div class="input-container">
+            <h2>Sign in</h2>
+            <form class="wrapper" action="/" method="POST">
+                <div class="inner-wrapper">
+                    <p>Username</p>
+                    <input
+                        type="text"
+                        name="username"
+                        placeholder="Enter Username"
+                    />
+                    <p>Password</p>
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Enter Password"
+                    />
+                </div>
+                <p class="signup-button">Don't have an account? <a href="/signup">Sign Up</a></p>
+                <p>
+                    <input
+                        class="submit-button"
+                        type="submit"
+                        value="Submit"
+                    />
+                </p>
+            </form>
+        </div>
+    </div>
+    <style>
+        h1 {
+            margin-top: 3rem;
+        }
+
+        h2 {
+            padding-left: 5rem;
+            text-decoration: underline;
+        }
+
+        .input-container {
+            width: 30vw;
+        }
+
+        .wrapper {
+            padding-inline: 2rem;
+        }
+    </style>
+</body>
+</html>
