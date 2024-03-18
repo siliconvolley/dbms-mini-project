@@ -89,6 +89,33 @@ def equipment_overview():
 
         return render_template('equipments/equipment_overview.html', equipments=equipments)
     
+# Display Operators Table
+@app.route('/display_operators')
+def display_operators():
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * FROM OPERATORS")
+    data = cursor.fetchall()
+    cursor.close()
+    return render_template('display_data/display_operators_data.html', data=data)
+
+# Display Energy Usage
+@app.route('/display_energy_usage')
+def display_energy_usage():
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT EquipmentID, SUM(EnergyConsumed) AS EnergyConsumed FROM ALERTS GROUP BY EquipmentID")
+    data = cursor.fetchall()
+    cursor.close()
+    return render_template('display_data/display_energy_usage.html', data=data)
+
+# Display Companies
+@app.route('/display_companies')
+def display_companies():
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * FROM COMPANY")
+    data = cursor.fetchall()
+    cursor.close()
+    return render_template('display_data/display_company_data.html', data=data)
+    
 # Selected Equipment Page rendering
 @app.route('/equipment_<equipment_id>', methods=['GET', 'POST'])
 def equipment_detail(equipment_id):
