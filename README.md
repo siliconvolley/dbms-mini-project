@@ -88,9 +88,9 @@ Description: A Python and MySQL project for tracking electrical equipment, opera
     ```
     ```
     CREATE TABLE AUTH (
-    UserName varchar(30),
-    Password varchar(30),
-    PRIMARY KEY (UserName, Password)
+        UserName varchar(30),
+        Password varchar(30),
+        PRIMARY KEY (UserName, Password)
     );
     ```
 
