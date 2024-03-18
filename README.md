@@ -1,7 +1,5 @@
 # DBMS Mini Project (Energy Monitoring System)
 
-(Work in progress 🔨🔃)
-
 Description: A Python and MySQL project for tracking electrical equipment, operators, and energy consumption. Enables companies to manage equipment ownership, monitor energy usage, and generate alerts. Includes relational database schema, backend implemented in Python using Flask, and MySQL. Promotes efficient resource optimization and sustainability practices within organizations
 
 <div style="text-align: center; text-decoration: underline; margin-top: 5rem; display: flex; justify-content: center;">
@@ -88,6 +86,13 @@ Description: A Python and MySQL project for tracking electrical equipment, opera
         FOREIGN KEY (CompanyID) REFERENCES COMPANY(CompanyID)
     );
     ```
+    ```
+    CREATE TABLE AUTH (
+    UserName varchar(30),
+    Password varchar(30),
+    PRIMARY KEY (UserName, Password)
+    );
+    ```
 
 ## Installation (Run this locally)
 
@@ -101,5 +106,5 @@ pip install -r requirements.txt
 ```
 3. Run the app:
 ```
-flask --app main.py run
+python main.py
 ```
