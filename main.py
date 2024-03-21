@@ -297,7 +297,7 @@ def operators_entry():
      
     if request.method == 'POST':
         OperatorName = request.form['OperatorName']
-        Occuption = request.form['Occuption']
+        Occuption = request.form['Occupation']
         PhoneNumber = request.form['PhoneNumber']
         CompanyID = request.form['CompanyID']
 
