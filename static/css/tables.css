@@ -12,6 +12,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     background: hsl(0 0% 93%);
+    border-radius: 1em;
 }
 
 caption, th, td {
