@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Energy Monitoring System</title>
         <link rel="stylesheet" href="/static/css/style.css" />
+        <link rel="stylesheet" href="/static/css/tables.css" />
     </head>
     <body>
         <div class="home-page">
@@ -17,23 +18,25 @@
             />
         </div>
         <h1>Operators Data Page</h1>
-        <table>
-            <tr>
-                <th>OperatorID</th>
-                <th>OperatorName</th>
-                <th>Occupation</th>
-                <th>PhoneNumber</th>
-                <th>CompanyID</th>
-            </tr>
-            {% for row in data %}
-            <tr>
-                <td>{{ row.OperatorID }}</td>
-                <td>{{ row.OperatorName }}</td>
-                <td>{{ row.Occupation }}</td>
-                <td>{{ row.PhoneNumber }}</td>
-                <td>{{ row.CompanyID }}</td>
-            </tr>
-            {% endfor %}
-        </table>
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th>OperatorID</th>
+                    <th>OperatorName</th>
+                    <th>Occupation</th>
+                    <th>PhoneNumber</th>
+                    <th>CompanyID</th>
+                </tr>
+                {% for row in data %}
+                <tr>
+                    <td>{{ row.OperatorID }}</td>
+                    <td>{{ row.OperatorName }}</td>
+                    <td>{{ row.Occupation }}</td>
+                    <td>{{ row.PhoneNumber }}</td>
+                    <td>{{ row.CompanyID }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
     </body>
 </html>

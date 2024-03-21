@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Energy Monitoring System</title>
         <link rel="stylesheet" href="/static/css/style.css" />
+        <link rel="stylesheet" href="/static/css/tables.css" />
     </head>
     <body>
         <div class="home-page">
@@ -17,17 +18,19 @@
             />
         </div>
         <h1>Energy Usage Page</h1>
-        <table>
-            <tr>
-                <th>EquipmentID</th>
-                <th>EnergyConsumed</th>
-            </tr>
-            {% for row in data %}
-            <tr>    
-                <td>{{ row.EquipmentID }}</td>
-                <td>{{ row.EnergyConsumed }}</td>
-            </tr>
-            {% endfor %}
-        </table>
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th>EquipmentID</th>
+                    <th>EnergyConsumed</th>
+                </tr>
+                {% for row in data %}
+                <tr>
+                    <td>{{ row.EquipmentID }}</td>
+                    <td>{{ row.EnergyConsumed }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
     </body>
 </html>
