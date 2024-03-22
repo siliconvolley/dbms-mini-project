@@ -79,11 +79,11 @@ Description: A Python and MySQL project for tracking electrical equipment, opera
     ```
     ```
     CREATE TABLE OPERATES (
-        OperatorID varchar(10),
-        CompanyID varchar(10),
-        PRIMARY KEY (OperatorID, CompanyID),
+        OperatorID varchar(20),
+        EquipmentID varchar(20),
+        PRIMARY KEY (OperatorID, EquipmentID),
         FOREIGN KEY (OperatorID) REFERENCES OPERATORS(OperatorID),
-        FOREIGN KEY (CompanyID) REFERENCES COMPANY(CompanyID)
+        FOREIGN KEY (EquipmentID) REFERENCES EQUIPMENTS(EquipmentID)
     );
     ```
     ```
