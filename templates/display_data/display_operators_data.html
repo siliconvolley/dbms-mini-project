@@ -21,11 +21,11 @@
         <div class="table-container">
             <table>
                 <tr>
-                    <th>OperatorID</th>
-                    <th>OperatorName</th>
+                    <th>Operator ID</th>
+                    <th>Operator Name</th>
                     <th>Occupation</th>
-                    <th>PhoneNumber</th>
-                    <th>CompanyID</th>
+                    <th>Phone Number</th>
+                    <th>Company Name</th>
                 </tr>
                 {% for row in data %}
                 <tr>
@@ -33,7 +33,7 @@
                     <td>{{ row.OperatorName }}</td>
                     <td>{{ row.Occupation }}</td>
                     <td>{{ row.PhoneNumber }}</td>
-                    <td>{{ row.CompanyID }}</td>
+                    <td>{{ row.CompanyName }}</td>
                 </tr>
                 {% endfor %}
             </table>

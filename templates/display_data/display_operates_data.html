@@ -18,17 +18,19 @@
             />
         </div>
         <h1>Operates Data Page</h1>
-        <table class="table-container">
-            <tr>
-                <th>OperatorID</th>
-                <th>EquipmentID</th>
-            </tr>
-            {% for row in operates %}
-            <tr>
-                <td>{{ row.OperatorID }}</td>
-                <td>{{ row.EquipmentID }}</td>
-            </tr>
-            {% endfor %}
-        </table>
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th>OperatorID</th>
+                    <th>EquipmentID</th>
+                </tr>
+                {% for row in operates %}
+                <tr>
+                    <td>{{ row.OperatorID }}</td>
+                    <td>{{ row.EquipmentID }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
     </body>
 </html>

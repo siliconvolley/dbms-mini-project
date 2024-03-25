@@ -21,17 +21,17 @@
         <div class="table-container">
             <table>
                 <tr>
-                    <th>AlertID</th>
-                    <th>EquipmentID</th>
-                    <th>OperatorID</th>
+                    <th>Alert ID</th>
+                    <th>Equipment Name</th>
+                    <th>Operator Name</th>
                     <th>EnergyConsumed</th>
-                    <th>TimeStamp</th>
+                    <th>Time Stamp</th>
                 </tr>
                 {% for row in data %}
                 <tr>
                     <td>{{ row.AlertID }}</td>
-                    <td>{{ row.EquipmentID }}</td>
-                    <td>{{ row.OperatorID }}</td>
+                    <td>{{ row.EquipmentName }}</td>
+                    <td>{{ row.OperatorName }}</td>
                     <td>{{ row.EnergyConsumed }}</td>
                     <td>{{ row.TimeStamp }}</td>
                 </tr>

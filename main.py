@@ -88,12 +88,23 @@ def equipment_overview():
         cursor.close()
 
         return render_template('equipments/equipment_overview.html', equipments=equipments)
-    
+
+# Display Logs
+@app.route('/logs')
+def display_logs():
+    if request.method == 'GET':
+        cursor = mysql.connection.cursor()
+        cursor.execute('SELECT A.*, E.EquipmentName, O.OperatorName FROM ALERTS A, EQUIPMENTS E, OPERATORS O WHERE A.EquipmentID=E.EquipmentID AND A.OperatorID=O.OperatorID;')
+        data = cursor.fetchall()
+        cursor.close()
+
+        return render_template('display_data/display_alerts_data.html', data=data)
+   
 # Display Operators Table
 @app.route('/display_operators')
 def display_operators():
     cursor = mysql.connection.cursor()
-    cursor.execute("SELECT * FROM OPERATORS")
+    cursor.execute("SELECT O.*, C.CompanyName FROM OPERATORS O, COMPANY C WHERE O.CompanyID=C.CompanyID;")
     data = cursor.fetchall()
     cursor.close()
     return render_template('display_data/display_operators_data.html', data=data)
@@ -102,7 +113,7 @@ def display_operators():
 @app.route('/display_energy_usage')
 def display_energy_usage():
     cursor = mysql.connection.cursor()
-    cursor.execute("SELECT EquipmentID, SUM(EnergyConsumed) AS EnergyConsumed FROM ALERTS GROUP BY EquipmentID")
+    cursor.execute("SELECT E.EquipmentID, E.EquipmentName, SUM(A.EnergyConsumed) AS EnergyConsumed FROM ALERTS A , Equipments E WHERE A.EquipmentID=E.EquipmentID GROUP BY E.EquipmentID;")
     data = cursor.fetchall()
     cursor.close()
     return render_template('display_data/display_energy_usage.html', data=data)
@@ -175,7 +186,7 @@ def add_log(equipment_id):
 
         cursor.execute("INSERT INTO ALERTS VALUES(%s,%s,%s,%s,%s)",(new_alert_id, equipment_id, OperatorID, EnergyConsumed, TimeStamp))
         mysql.connection.commit()
-        cursor.execute("SELECT * FROM ALERTS")
+        cursor.execute("SELECT A.*, E.EquipmentName, O.OperatorName FROM ALERTS A, EQUIPMENTS E, OPERATORS O WHERE A.EquipmentID=E.EquipmentID AND A.OperatorID=O.OperatorID;")
         data = cursor.fetchall()
         cursor.close()
         return render_template('display_data/display_alerts_data.html', data=data)

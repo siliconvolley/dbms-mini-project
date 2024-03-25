@@ -21,12 +21,14 @@
         <div class="table-container">
             <table>
                 <tr>
-                    <th>EquipmentID</th>
-                    <th>EnergyConsumed</th>
+                    <th>Equipment ID</th>
+                    <th>Equipment Name</th>
+                    <th>Energy Consumed</th>
                 </tr>
                 {% for row in data %}
                 <tr>
                     <td>{{ row.EquipmentID }}</td>
+                    <td>{{ row.EquipmentName }}</td>
                     <td>{{ row.EnergyConsumed }}</td>
                 </tr>
                 {% endfor %}
